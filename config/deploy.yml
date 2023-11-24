@@ -2,11 +2,11 @@
 service: vasaulys-django-demo
 
 # Name of the container image.
-image: vasaulys/django-demo:latest
+image: vasaulys/django-demo
 
 # Deploy to these servers.
 servers:
-  - 137.184.0.220
+  - 167.71.180.83
 
 # Credentials for your image host.
 registry:
@@ -20,7 +20,8 @@ registry:
 
 # Inject ENV variables into containers (secrets come from .env).
 # Remember to run `kamal env push` after making changes!
-# env:
+env:
+  ALLOWED_HOSTS: "localhost,167.71.180.83"
 #   clear:
 #     DB_HOST: 192.168.0.2
 #   secret:
@@ -70,9 +71,11 @@ registry:
 #     accesslog.format: json
 
 # Configure a custom healthcheck (default is /up on port 3000)
-# healthcheck:
-#   path: /healthz
-#   port: 4000
+healthcheck:
+  path: /
+  port: 8000
+  max_attempts: 10
+  interval: 30s  
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
