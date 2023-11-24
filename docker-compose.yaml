@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+
+  django:
+    image: vasaulys/django-demo:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    expose:
+      - 8000
+    ports:
+      - '8000:8000'
+      
+      
